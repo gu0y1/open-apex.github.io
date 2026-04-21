@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open-APEX: Affordable & Open Robotic Arm</title>
+    <meta name="description" content="Open-APEX is an open, affordable, reproducible, and extensible robotic-arm platform for educational and research laboratories.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>window.MathJax = {tex: {inlineMath: [['\\(','\\)']],displayMath: [['\\[','\\]']]}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">Open-APEX<span class="highlight">.org</span></h1>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#interactive">3D Model</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#vla-flowchart">Showcases</a></li>
+                <li><a href="#community">Community</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Engineering-level Reliability at <span class="highlight">Campus Cost</span></h1>
+            <p class="hero-subtitle">
+                Open-APEX (Open-Sourced Affordable Printed Extensible eXchangeable-tool Robotic Arm) solves the trilemma of affordability, reproducibility, and extensibility. A deterministic control stack built on accessible 3D-printing.
+            </p>
+            <div class="hero-buttons">
+                <a href="#vla-flowchart" class="btn btn-primary">Explore Autonomy</a>
+                <a href="https://github.com/your-username/Open-APEX" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Abstract / About -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Open-APEX <span class="highlight">Vision</span></h2>
+            </div>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary); max-width: 800px; margin: 0 auto; text-align: center;">
+                Robotics platforms limit research when they force a compromise between cost and capability. <strong>Open-APEX</strong> breaks this barrier. We deliver a 6-DoF arm, strict deterministic safety, and an open VLA-ready pipeline—proving that affordability does not require sacrificing reproducibility or extensibility.
+            </p>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section id="features" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Trilemma <span class="highlight">Solved</span></h2>
+                <p>Designed to break the barriers of deployment in educational laboratories.</p>
+            </div>
+            
+            <div class="trilemma-container" style="display: flex; align-items: stretch; gap: 40px; flex-wrap: wrap;">
+                <!-- Venn Diagram with Interactive Nodes -->
+                <div class="venn-wrapper" style="flex: 1; min-width: 300px; display: flex; justify-content: center; align-items: center;">
+                    <svg id="venn-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 450px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); cursor: pointer;">
+                        <style>
+                            .venn-circle { mix-blend-mode: multiply; opacity: 0.85; transition: opacity 0.3s ease, filter 0.3s ease; transform-origin: center; pointer-events: none; }
+                            .venn-label { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; text-anchor: middle; pointer-events: none; text-shadow: 0 2px 4px rgba(255,255,255,0.7); }
+                            .venn-center { font-family: 'Inter', sans-serif; font-weight: 900; font-size: 20px; fill: #fff; text-anchor: middle; pointer-events: none; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+                            
+                            /* Hover effect when a region is focused */
+                            #venn-svg.focus-A #circle-rep, #venn-svg.focus-A #circle-ext { opacity: 0.4; filter: grayscale(50%); }
+                            #venn-svg.focus-B #circle-aff, #venn-svg.focus-B #circle-ext { opacity: 0.4; filter: grayscale(50%); }
+                            #venn-svg.focus-C #circle-aff, #venn-svg.focus-C #circle-rep { opacity: 0.4; filter: grayscale(50%); }
+                            #venn-svg.focus-D #circle-ext { opacity: 0.4; filter: grayscale(50%); }
+                            #venn-svg.focus-E #circle-rep { opacity: 0.4; filter: grayscale(50%); }
+                            #venn-svg.focus-F #circle-aff { opacity: 0.4; filter: grayscale(50%); }
+                        </style>
+                        <g transform="translate(0, 10)">
+                            <!-- The 3 base circles -->
+                            <circle id="circle-aff" cx="160" cy="150" r="110" fill="#EF7C00" class="venn-circle"/>
+                            <circle id="circle-rep" cx="240" cy="150" r="110" fill="#003D7C" class="venn-circle"/>
+                            <circle id="circle-ext" cx="200" cy="220" r="110" fill="#2eb872" class="venn-circle"/>
+                            
+                            <!-- Static Base Text -->
+                            <text x="110" y="100" class="venn-label" style="fill: #EF7C00;">Affordable</text>
+                            <text x="290" y="100" class="venn-label" style="fill: #003D7C;">Reproducible</text>
+                            <text x="200" y="360" class="venn-label" style="fill: #2eb872;">Extensible</text>
+                            <text x="200" y="180" class="venn-center">Open-APEX</text>
+                        </g>
+                    </svg>
+                </div>
+                
+                <!-- Dynamic Content Panel -->
+                <div class="trilemma-detail" style="flex: 1.5; min-width: 300px; display: flex; align-items:stretch;">
+                    <div id="dynamic-card" class="card feature-card" style="width: 100%; min-height: 350px; display: flex; flex-direction: column; justify-content: center; border-left: 4px solid #ccc; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+                        <div id="card-content" style="opacity: 1; transition: opacity 0.3s ease;">
+                            <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: #888;">Explore the Robotics Landscape</h3>
+                            <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary);">Hover and click anywhere across the overlapping geometric regions on the Venn Diagram to reveal mapping of current market solutions, their limitations, and where Open-APEX fits.</p>
+                            <div style="margin-top: 20px; font-weight: 600; color: #ccc;">Select a region to begin.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Model Interactive Explorer -->
+    <section id="interactive" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Interactive <span class="highlight">Hardware Explorer</span></h2>
+                <p>Examine the individual PETG structural components and joint configurations in real-time 3D.</p>
+            </div>
+            
+            <div class="explorer-layout">
+                <!-- Data & Controls Panel -->
+                <div class="explorer-panel">
+                    <h3>Component Breakdown</h3>
+                    <div class="link-selector" id="link-tabs">
+                        <button class="tab-btn active" data-link="0">Link 0 (Base)</button>
+                        <button class="tab-btn" data-link="1">Link 1</button>
+                        <button class="tab-btn" data-link="2">Link 2</button>
+                        <button class="tab-btn" data-link="3">Link 3</button>
+                        <button class="tab-btn" data-link="4">Link 4</button>
+                        <button class="tab-btn" data-link="5">Link 5</button>
+                        <button class="tab-btn" data-link="assembled">Assembled Arm</button>
+                    </div>
+
+                    <div class="link-params card" id="link-info-card">
+                        <h4 id="info-title">Link 0 Parameters</h4>
+                        <ul>
+                            <li><strong>Material:</strong> <span id="info-mat">PETG HF</span></li>
+                            <li id="weight-row"><strong>Weight:</strong> <span id="info-weight">55.81 g</span></li>
+                            <li id="time-row"><strong>Print Time:</strong> <span id="info-time">3h54m</span></li>
+                            <li id="fasteners-row"><strong>Fasteners:</strong> <span id="info-fasteners">12</span></li>
+                            <li id="dim-row"><strong>Dimensions:</strong> <span id="info-dim">N/A</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3D Viewer Area / Image Fallback -->
+                <div class="explorer-viewer" style="position: relative;">
+                    <model-viewer 
+                        id="main-viewer"
+                        src="assets/model/link0.glb" 
+                        camera-controls 
+                        auto-rotate 
+                        shadow-intensity="1" 
+                        environment-image="neutral"
+                        exposure="1.2"
+                        style="width: 100%; height: 100%; display: block;">
+                    </model-viewer>
+                    <div id="assembled-image-container" style="display: none; width: 100%; height: 100%; align-items: center; justify-content: center; background: #fff;">
+                        <img src="assets/image2.svg" alt="Eye-to-Hand Visual Servoing Architecture" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task Management System Demonstration -->
+    <section id="demo" class="section bg-light" style="border-top: 1px solid #eaeaea;">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Task Management <span class="highlight">Demonstration</span></h2>
+                <p>Programming complex, non-trivial task sequences quickly and without writing code.</p>
+            </div>
+
+            <div class="timeline">
+                <!-- Step 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">01</div>
+                    <div class="timeline-content" data-video="assets/videos/01.mp4">
+                        <div class="timeline-text">
+                            <h3>Initialization & Setup</h3>
+                            <p>The objective requires absolute precision: sticking a blue gum stick onto a microscopic magnet perfectly, with absolutely no human interaction during runtime. We begin by verifying serial communications, enabling joint brakes, and safely recording the robot's physical Home Point.</p>
+                            <button class="timeline-play-btn">Watch Demo</button>
+                        </div>
+                        <div class="timeline-video-wrapper">
+                            <div class="timeline-video">
+                                <video muted playsinline controls preload="none"></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">02</div>
+                    <div class="timeline-content" data-video="assets/videos/02.mp4">
+                        <div class="timeline-text">
+                            <h3>Digital Twin Waypoint Registration</h3>
+                            <p>Teaching by dragging. By simply clicking on the simulated Ursina 3D arm and dragging it to the desired coordinate, the physical robotic arm mirrors the movement flawlessly. We set our target waypoint directly in the virtual interface.</p>
+                            <button class="timeline-play-btn">Watch Demo</button>
+                        </div>
+                        <div class="timeline-video-wrapper">
+                            <div class="timeline-video">
+                                <video muted playsinline controls preload="none"></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">03</div>
+                    <div class="timeline-content" data-video="assets/videos/03.mp4">
+                        <div class="timeline-text">
+                            <h3>Grasp Sequence Programming</h3>
+                            <p>We choreograph the intricate end-effector steps: open grip, approach target, test structural repeatability by checking alignment, and closing the grip. Every individual action is logged as a sequential node in our task pipeline.</p>
+                            <button class="timeline-play-btn">Watch Demo</button>
+                        </div>
+                        <div class="timeline-video-wrapper">
+                            <div class="timeline-video">
+                                <video muted playsinline controls preload="none"></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">04</div>
+                    <div class="timeline-content" data-video="assets/videos/04.mp4">
+                        <div class="timeline-text">
+                            <h3>Autonomous Full-Cycle Execution</h3>
+                            <p>The sequence is locked. The system executes the entire trajectory: approaching the target wall, hitting the microscopic magnet, releasing the stick, retracting safely, and returning to the home position entirely autonomously.</p>
+                            <button class="timeline-play-btn">Watch Demo</button>
+                        </div>
+                        <div class="timeline-video-wrapper">
+                            <div class="timeline-video">
+                                <video muted playsinline controls preload="none"></video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core System Capabilities (Grid Layout) -->
+    <section id="capabilities" class="section bg-light border-top">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>System <span class="highlight">Capabilities</span></h2>
+                <p>Engineering-grade architecture distilled into a practical laboratory package.</p>
+            </div>
+            
+            <div class="capabilities-grid" id="capabilities-grid">
+                <!-- Card 1: Standardization & Reliability -->
+                <div class="cap-card" data-card="0">
+                    <h3>Standardization & Reliability</h3>
+                    <p class="cap-summary"><strong>Built on Practical Engineering.</strong> RS-485 daisy-chain routing, PETG chassis optimized for FDM -- affordable but uncompromising.</p>
+                    <div class="cap-detail">
+                        <p>Open-APEX uses PETG for all structural links because it prints reliably on common campus FDM machines with a single slicing profile (0.4 mm nozzle, 0.2 mm layer height). Load-bearing regions use ribs; non-critical regions are hollowed. Total printed mass: <strong>930.41 g</strong>. Filament cost for one arm: approximately <strong>SGD 15</strong>.</p>
+                        <table class="cap-table">
+                            <thead><tr><th>Link</th><th>Length</th><th>Dia.</th><th>Material</th><th>Weight</th><th>Print Time</th><th>Fasteners</th></tr></thead>
+                            <tbody>
+                                <tr><td>Link 0</td><td>--</td><td>--</td><td>PETG HF</td><td>55.81 g</td><td>3h54m</td><td>12</td></tr>
+                                <tr><td>Link 1</td><td>--</td><td>--</td><td>PETG HF</td><td>95.91 g</td><td>6h15m</td><td>16</td></tr>
+                                <tr><td>Link 2</td><td>300 mm</td><td>50 mm</td><td>PETG HF</td><td>302.83 g</td><td>20h9m</td><td>25</td></tr>
+                                <tr><td>Link 3</td><td>300 mm</td><td>50 mm</td><td>PETG HF</td><td>285.16 g</td><td>21h16m</td><td>24</td></tr>
+                                <tr><td>Link 4</td><td>--</td><td>--</td><td>PETG HF</td><td>95.35 g</td><td>6h46m</td><td>12</td></tr>
+                                <tr><td>Link 5</td><td>--</td><td>--</td><td>PETG HF</td><td>95.35 g</td><td>6h46m</td><td>12</td></tr>
+                            </tbody>
+                        </table>
+                        <p>All joints use identical 42 mm stepper motors (SGD 8 each) on a shared RS-485 daisy-chain bus. A single trunk carries 24 V power alongside the differential RS-485 pair, reducing harness size, connector count, and wiring mistakes. The brand is not critical -- any equivalent motor meeting the published specs may be substituted.</p>
+                    </div>
+                    <span class="cap-expand-hint">Click to expand</span>
+                </div>
+                
+                <!-- Card 2: Interactive Control -->
+                <div class="cap-card" data-card="1">
+                    <h3>Interactive Control</h3>
+                    <p class="cap-summary"><strong>What You See Is What You Move.</strong> A flawless Digital Twin powered by Ursina -- drag on screen, robot follows.</p>
+                    <div class="cap-detail">
+                        <p>The digital twin lets users move the end effector directly in 3D. When a target is dragged, the system solves inverse kinematics online and synchronizes the approved joint state to the physical arm. Users think in terms of <em>tool position</em> rather than individual joint angles.</p>
+                        <img src="assets/digital_twin_ui.png" alt="Digital twin software interface" class="cap-detail-img">
+                        <div class="cap-video-block">
+                            <video class="cap-detail-video" controls playsinline preload="none">
+                                <source src="assets/videos/pnp.mp4" type="video/mp4">
+                            </video>
+                            <p class="cap-video-caption">To fuse the physical arm scene with the software scene, Open-APEX uses PnP (Perspective-n-Point) calibration to correct the camera viewpoint, making the two perspectives perfectly overlap. This video demonstrates the calibration process in action. The bottom-right panel displays the PnP algorithm's real-time estimation of the camera pose relative to the arm's Link 0 frame.</p>
+                        </div>
+                        <p>The jog loop creates a rolling short-horizon plan: each jog input creates a small target update, the UI requests a short trajectory from the Flask server, then streams the returned joint frames to both the visual model and the robot simultaneously.</p>
+                        <img src="assets/jog_realtime.png" alt="Jog real-time flow diagram" class="cap-detail-img">
+                        <p>Two execution modes are supported. In <strong>Simul</strong> mode, visualization and hardware move together frame by frame, minimizing the delay between what the operator sees and what the robot does. In <strong>Preview-First</strong> mode, the UI plays the motion in the digital twin before sending it to hardware -- useful for teaching and cautious operation.</p>
+                    </div>
+                    <span class="cap-expand-hint">Click to expand</span>
+                </div>
+                
+                <!-- Card 3: Deterministic Safety -->
+                <div class="cap-card" data-card="2">
+                    <h3>Deterministic Safety</h3>
+                    <p class="cap-summary"><strong>Predictable Behavior in Unpredictable Workspaces.</strong> DLS-IK and target extrapolation reject unsafe commands.</p>
+                    <div class="cap-detail">
+                        <p>The controller uses <strong>Damped Least Squares (DLS)</strong> inverse kinematics to remain stable near singularities. The IK step solved every control cycle:</p>
+                        <div class="cap-formula">\[\Delta\mathbf{q}=\mathbf{J}(\mathbf{q})^{\top}\left(\mathbf{J}(\mathbf{q})\mathbf{J}(\mathbf{q})^{\top}+\lambda^2\mathbf{I}\right)^{-1}\mathbf{e}\]</div>
+                        <p>Joints are always clamped: \(\mathbf{q}_{k+1}=\mathrm{sat}_{[\mathbf{q}_{\min},\mathbf{q}_{\max}]}(\mathbf{q}_{k}+\Delta\mathbf{q})\). For short final-approach motions, a <strong>distance-aware target extrapolation</strong> strategy prevents erratic proximal joint motion:</p>
+                        <div class="cap-formula">\[x_{e} = x_{d} + L_{\text{ext}}(d)\,\mathbf{u}, \quad L_{\text{ext}}(d) = \max(0,\, d_{c} - d)\]</div>
+                        <p>A distance-coupled joint regularization term further penalizes large proximal joints during close-range motions:</p>
+                        <div class="cap-formula">\[\min_{\dot{q}} \; \lVert J\dot{q} - \dot{x}_{\text{ref}} \rVert^{2} + \gamma(d)\,\dot{q}^{\top}W_{q}\dot{q}\]</div>
+                        <table class="cap-table">
+                            <thead><tr><th>Joint</th><th>Axis</th><th>Limits (deg)</th><th>Safety Notes</th></tr></thead>
+                            <tbody>
+                                <tr><td>J1</td><td>Y</td><td>[-170, +170]</td><td>20 deg anti-twist margin for cable harness</td></tr>
+                                <tr><td>J2</td><td>X</td><td>[-90, +100]</td><td>Avoids excessive upward lift</td></tr>
+                                <tr><td>J3</td><td>X</td><td>[-130, +10]</td><td>+10 deg prevents mechanical interference</td></tr>
+                                <tr><td>J4</td><td>X</td><td>[-180, +180]</td><td>Most sensitive to cable torsion</td></tr>
+                                <tr><td>J5</td><td>Z</td><td>[-120, +120]</td><td>Balances task postures and bend radius</td></tr>
+                                <tr><td>J6</td><td>Y</td><td>[-180, +180]</td><td>Use back-and-forth to untwist</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <span class="cap-expand-hint">Click to expand</span>
+                </div>
+
+                <!-- Card 4: Hardware E-Stop & Isolation -->
+                <div class="cap-card" data-card="3">
+                    <h3>Hardware E-Stop & Isolation</h3>
+                    <p class="cap-summary"><strong>Strictly Segregated Power Domains.</strong> 24V/5V/3.3V isolation guarantees fail-safe behavior.</p>
+                    <div class="cap-detail">
+                        <p>Open-APEX uses three isolated electrical domains: <strong>24 V actuation</strong>, <strong>5 V differential communication</strong>, and <strong>3.3 V logic</strong>. This limits fault propagation, simplifies debugging, and gives future modules clear connection points.</p>
+                        <img src="assets/sys_arch.png" alt="System architecture diagram" class="cap-detail-img">
+                        <p>The 24 V supply enters a <strong>hard emergency-stop path</strong> before any software-controlled branch. After the E-stop stage, an 8-channel relay module distributes power across the actuation line, electromagnet release line, and status indicators. Three status indicators with NC-safe defaults make system state visible at the hardware level.</p>
+                        <p>The arm-side harness is limited to just <strong>5 conductors</strong>: Motor 24 V, Magnet 24 V, RS-485 A, RS-485 B, and Ground. Aviation-style keyed connectors prevent miswiring during maintenance. All grounds return to one power-adapter reference for clean signal integrity.</p>
+                    </div>
+                    <span class="cap-expand-hint">Click to expand</span>
+                </div>
+                
+                <!-- Card 5: Modular eXchangeable-Tool -->
+                <div class="cap-card" data-card="4">
+                    <h3>Modular eXchangeable-Tool</h3>
+                    <p class="cap-summary"><strong>True Magnetic Quick-Release.</strong> Swap grippers, probes, and sensors without rewiring.</p>
+                    <div class="cap-detail">
+                        <p>A magnetic electrical connector links the arm harness to the tool harness. After docking, the electromagnet locks Link-5 to the tool. The system then powers up in a strict sequence:</p>
+                        <ol class="cap-steps">
+                            <li><strong>Dock</strong> -- Electromagnet engages, physically locking tool module</li>
+                            <li><strong>5 V Enable</strong> -- ESP32 Slave boots, establishes Wi-Fi link, reports telemetry</li>
+                            <li><strong>24 V Enable</strong> -- High-power tool actuator is powered (if needed)</li>
+                        </ol>
+                        <p>Undocking reverses the sequence: sensors and actuators stop first, then 24 V is cut, then 5 V, and finally the electromagnet is released. The electromagnet is configured as <strong>power-off magnetic / power-on release</strong>, so energy is used only for intentional tool release. A watchdog timer limits energisation time to prevent overheating.</p>
+                        <p>The ESP32 Master controls three separate power rails for the end effector (<strong>9 V</strong> docking magnet, <strong>5 V</strong> logic, <strong>24 V</strong> tool power), communicating wirelessly with the ESP32 Slave mounted on the tool. This means tool changes never disturb joint-side control.</p>
+                        <div class="cap-video-block">
+                            <video class="cap-detail-video" controls playsinline preload="none" poster="">
+                                <source src="assets/videos/exchangeTool.mp4" type="video/mp4">
+                            </video>
+                            <p class="cap-video-caption">Solid green indicates normal arm operation with the end effector locked. When the yellow LED flashes, the electromagnetic locking mechanism demagnetises, allowing the end effector to be freely swapped. After 5 seconds the system automatically re-engages, securing the new tool in place.</p>
+                        </div>
+                    </div>
+                    <span class="cap-expand-hint">Click to expand</span>
+                </div>
+                
+                <!-- Card 6: Decoupled ZMQ Flow -->
+                <div class="cap-card" data-card="5">
+                    <h3>Decoupled ZMQ Flow</h3>
+                    <p class="cap-summary"><strong>High-Speed Module Synchronization.</strong> Flask + ZMQ IPC keeps the frame rate perfect.</p>
+                    <div class="cap-detail">
+                        <p>The software is split into cooperating processes. The <strong>Trajectory Server</strong> (Flask) accepts a start pose, end pose, and initial joint config over HTTP. It generates a Cartesian path and solves IK to produce a joint trajectory -- kept stateless for on-demand replanning.</p>
+                        <p>The <strong>Commander layer</strong> publishes joint-angle frames over a <strong>ZMQ PUB socket (:5557)</strong>. Visualizers subscribe to the same channel for real-time mirrored views. Simultaneously, serialised motion frames are streamed to stepper drives over dedicated serial managers. This separates fast visualization traffic from deterministic hardware traffic.</p>
+                        <img src="assets/target_point_move.png" alt="Target-point move execution flow" class="cap-detail-img">
+                        <p>Safety is enforced at every module boundary: the UI validates commands before any hardware frame is sent, the Commander only transmits approved frames, and the physical E-stop remains the final fallback. Because executed frames are also shown in the visual stream, the operator always sees what the robot is about to do.</p>
+                    </div>
+                    <span class="cap-expand-hint">Click to expand</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full VLA Flowchart Section -->
+    <section id="vla-flowchart" class="section vla-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Vision-Language-Action <span class="highlight">Pipeline</span></h2>
+                <p>Experience the entire autonomy loop, from human intent to physical actuation. Click any stage to jump to the corresponding moment in the demonstration.</p>
+            </div>
+
+            <div class="vla-player-wrapper">
+                <video id="vla-video" class="vla-video" controls playsinline preload="metadata">
+                    <source src="assets/videos/vla.mp4" type="video/mp4">
+                </video>
+
+                <!-- Pipeline Progress Bar -->
+                <div class="vla-pipeline" id="vla-pipeline">
+                    <div class="vla-stage" data-start="0" data-end="4">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">01</span>
+                            <span class="vla-stage-title">User Request</span>
+                        </div>
+                        <div class="vla-stage-desc">The operator speaks or types a natural-language instruction -- for example, "Stack the red disk onto the blue disk." The system captures the raw text and forwards it to the language module for semantic decomposition. No structured syntax or programming knowledge is required.</div>
+                    </div>
+                    <div class="vla-stage" data-start="4" data-end="14">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">02</span>
+                            <span class="vla-stage-title">Task Understanding</span>
+                        </div>
+                        <div class="vla-stage-desc">The LLM-based reasoning engine decomposes the command into structured fields: the manipulation target (red disk), the destination reference (blue disk), and the task category (pick-and-place with stacking). Key constraints such as grasp stability and alignment precision are inferred from the task type.</div>
+                    </div>
+                    <div class="vla-stage" data-start="14" data-end="22">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">03</span>
+                            <span class="vla-stage-title">End-Effector Selection</span>
+                        </div>
+                        <div class="vla-stage-desc">The system evaluates the target object's geometry, surface properties, and the contact stability required for stacking. It compares the currently mounted end effector against the task requirements and selects the most suitable one -- in this case, switching from a suction cup to a parallel gripper for lateral clamping precision.</div>
+                    </div>
+                    <div class="vla-stage" data-start="22" data-end="34">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">04</span>
+                            <span class="vla-stage-title">Workflow Generation</span>
+                        </div>
+                        <div class="vla-stage-desc">A complete execution workflow is generated: tool change, object detection, grasp-pose computation, collision-free path planning, approach, grip, lift, transfer, alignment, placement, release, and post-placement verification. Each step is sequenced with explicit preconditions and success criteria before proceeding.</div>
+                    </div>
+                    <div class="vla-stage" data-start="34" data-end="65">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">05</span>
+                            <span class="vla-stage-title">Tool Change</span>
+                        </div>
+                        <div class="vla-stage-desc">The magnetic quick-release mechanism demagnetises the docking connector, freeing the current end effector. The operator (or an automated tool rack) installs the parallel gripper. Once docked, the electromagnet re-engages and the ESP32 handshake confirms electrical continuity before the system proceeds.</div>
+                    </div>
+                    <div class="vla-stage" data-start="65" data-end="69">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">06</span>
+                            <span class="vla-stage-title">Scene Perception</span>
+                        </div>
+                        <div class="vla-stage-desc">The vision module captures the workspace via calibrated cameras and runs object detection to identify all relevant items. For each detected object, the system extracts its 3D centroid position, bounding dimensions, and colour label. A semantic scene graph is built, establishing the spatial relationships needed for grasp and placement planning.</div>
+                    </div>
+                    <div class="vla-stage" data-start="69" data-end="73">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">07</span>
+                            <span class="vla-stage-title">Path Planning</span>
+                        </div>
+                        <div class="vla-stage-desc">The trajectory planner computes a segmented Cartesian path: Home to Pre-Grasp, Pre-Grasp to Grasp, Grasp to Lift, Lift to Pre-Place, and Pre-Place to Place. Each segment is checked against joint limits, workspace boundaries, and singularity proximity using Damped Least Squares IK. Unsafe segments are rejected before any motor moves.</div>
+                    </div>
+                    <div class="vla-stage" data-start="73" data-end="98">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">08</span>
+                            <span class="vla-stage-title">Grasp Execution</span>
+                        </div>
+                        <div class="vla-stage-desc">The arm descends from the pre-grasp waypoint to the computed grasp pose. The parallel gripper closes around the red disk with controlled force. A grasp-status check confirms stable contact by verifying the gripper encoder position against expected object width. If the check fails, the system retries or aborts safely.</div>
+                    </div>
+                    <div class="vla-stage" data-start="98" data-end="137">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">09</span>
+                            <span class="vla-stage-title">Transfer & Place</span>
+                        </div>
+                        <div class="vla-stage-desc">The grasped object is lifted vertically to a safe clearance height, then translated horizontally to the position directly above the blue disk. A precision alignment step adjusts the final X-Y offset using visual feedback. The arm descends to the stacking height and the gripper opens to release the red disk onto the blue disk.</div>
+                    </div>
+                    <div class="vla-stage" data-start="137" data-end="146">
+                        <div class="vla-stage-bar"></div>
+                        <div class="vla-stage-label">
+                            <span class="vla-stage-num">10</span>
+                            <span class="vla-stage-title">Verify & Return</span>
+                        </div>
+                        <div class="vla-stage-desc">A post-placement verification step checks the relative position and stacking stability of the placed object. The gripper state is confirmed open, the task status is marked as completed, and the arm retracts along a safe path back to the home position, ready for the next instruction.</div>
+                    </div>
+                </div>
+
+                <!-- Active stage info panel -->
+                <div class="vla-info" id="vla-info">
+                    <span class="vla-info-num" id="vla-info-num"></span>
+                    <span class="vla-info-title" id="vla-info-title">Click a stage or play the video to begin.</span>
+                    <p class="vla-info-desc" id="vla-info-desc"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community & Contributing -->
+    <section id="community" class="section community-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Join the <span class="highlight">Community</span></h2>
+                <p>Open-APEX is built in the open. Every contribution -- from a one-line typo fix to a new end-effector module -- helps the platform grow.</p>
+            </div>
+
+            <div class="community-grid">
+                <!-- Issues -->
+                <div class="community-card">
+                    <div class="community-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <h3>Report Issues</h3>
+                    <p>Found a bug, unexpected behaviour, or a documentation gap? Open a <strong>GitHub Issue</strong> so the community can track and resolve it.</p>
+                    <ul class="community-rules">
+                        <li>Search existing issues before creating a new one</li>
+                        <li>Use the provided issue template</li>
+                        <li>Include steps to reproduce, expected vs. actual behaviour</li>
+                        <li>Attach logs, screenshots, or short screen recordings when possible</li>
+                        <li>Tag with the appropriate label: <code>bug</code>, <code>docs</code>, <code>enhancement</code></li>
+                    </ul>
+                    <a href="https://github.com/open-apex/open-apex/issues" target="_blank" class="community-btn">Open an Issue</a>
+                </div>
+
+                <!-- Pull Requests -->
+                <div class="community-card">
+                    <div class="community-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+                    </div>
+                    <h3>Submit a Pull Request</h3>
+                    <p>Ready to contribute code, firmware, CAD files, or documentation? Submit a <strong>Pull Request</strong> following these guidelines.</p>
+                    <ul class="community-rules">
+                        <li>Fork the repository and create a feature branch from <code>main</code></li>
+                        <li>Keep PRs focused -- one logical change per PR</li>
+                        <li>Follow the existing code style and naming conventions</li>
+                        <li>Add or update tests and documentation as needed</li>
+                        <li>Write a clear PR description linking the related Issue</li>
+                        <li>Ensure CI checks pass before requesting review</li>
+                    </ul>
+                    <a href="https://github.com/open-apex/open-apex/pulls" target="_blank" class="community-btn">Create a PR</a>
+                </div>
+
+                <!-- Community Guidelines -->
+                <div class="community-card">
+                    <div class="community-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Community Guidelines</h3>
+                    <p>A healthy community is built on mutual respect and clear communication. Please follow these principles.</p>
+                    <ul class="community-rules">
+                        <li>Be respectful and constructive in all discussions</li>
+                        <li>Prioritise clarity -- write for someone building the arm for the first time</li>
+                        <li>Hardware PRs must include updated BOM and assembly notes</li>
+                        <li>Breaking changes require an RFC issue before implementation</li>
+                        <li>All contributions are licensed under the project's open-source licence</li>
+                    </ul>
+                    <a href="https://github.com/open-apex/open-apex" target="_blank" class="community-btn">View Repository</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>Open-APEX.org</h2>
+                    <p>Empowering labs to reproduce and extend with confidence.</p>
+                </div>
+                <div class="footer-sponsor">
+                    <a href="https://www.nus.edu.sg" target="_blank" rel="noopener">
+                        <img src="assets/nus_logo_white.png" alt="National University of Singapore" class="footer-nus-logo">
+                    </a>
+                    <p>Supported by NUS</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Open-APEX.org All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
