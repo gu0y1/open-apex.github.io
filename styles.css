@@ -148,6 +148,40 @@ ul {
     width: 100%;
 }
 
+/* Hamburger Menu Button */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 1010;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: var(--nus-blue);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-hamburger.open span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-hamburger.open span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
@@ -896,11 +930,40 @@ model-viewer {
 }
 
 .cap-card.card-expanded .cap-expand-hint {
-    opacity: 0.5;
+    display: none;
 }
 
-.cap-card.card-expanded .cap-expand-hint::after {
-    content: ' (click to collapse)';
+/* Close button (injected by JS, visible only when expanded) */
+.cap-card-close {
+    display: none;
+}
+
+.cap-card.card-expanded .cap-card-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    position: sticky;
+    bottom: 10px;
+    float: right;
+    margin-top: 24px;
+    padding: 8px 20px;
+    background: rgba(0, 61, 124, 0.06);
+    color: var(--nus-blue);
+    border: 1px solid rgba(0, 61, 124, 0.12);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cap-card.card-expanded .cap-card-close:hover {
+    background: var(--nus-blue);
+    color: #fff;
+}
+
+.cap-card.card-expanded {
+    cursor: default;
 }
 
 @media (max-width: 900px) {
@@ -913,6 +976,78 @@ model-viewer {
     .capabilities-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Cost Breakdown Table */
+.cost-wrapper {
+    max-width: 780px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 4px 24px rgba(0, 61, 124, 0.06);
+    border: 1px solid rgba(0, 61, 124, 0.06);
+    overflow: hidden;
+}
+
+.cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.cost-table th {
+    padding: 14px 16px;
+    text-align: left;
+    background: var(--nus-blue);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.cost-table th:last-child {
+    text-align: right;
+}
+
+.cost-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(0, 61, 124, 0.06);
+    color: var(--text-secondary);
+}
+
+.cost-table td:nth-child(3),
+.cost-table td:nth-child(4),
+.cost-table td:nth-child(5) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.cost-table tbody tr:hover {
+    background: rgba(239, 124, 0, 0.03);
+}
+
+.cost-category-row td {
+    font-weight: 700;
+    color: var(--nus-blue);
+    background: rgba(0, 61, 124, 0.03);
+    font-size: 0.85rem;
+    padding: 10px 16px;
+    letter-spacing: 0.3px;
+}
+
+.cost-total-row td {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--nus-blue);
+    border-top: 2px solid var(--nus-blue);
+    padding: 16px;
+}
+
+.cost-total-row td:last-child {
+    color: var(--nus-orange);
+    font-size: 1.15rem;
 }
 
 /* VLA Interactive Pipeline */
@@ -1308,7 +1443,40 @@ model-viewer {
 
 /* Responsive — single consolidated block */
 @media (max-width: 768px) {
+    .nav-hamburger {
+        display: flex;
+    }
+
     .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(0, 61, 124, 0.1);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-links.nav-open {
+        display: flex;
+    }
+
+    .nav-links li {
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .nav-links a::after {
         display: none;
     }
 

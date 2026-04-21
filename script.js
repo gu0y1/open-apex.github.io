@@ -16,6 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
         navbar.classList.add('scrolled');
     }
 
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('nav-open');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('nav-open');
+            });
+        });
+    }
+
     // Scroll reveal animations
     const observerOptions = {
         root: null,
@@ -168,23 +187,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (capCards.length > 0 && capGrid) {
         capCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const isExpanded = card.classList.contains('card-expanded');
+            // Inject a close button into each card (hidden until expanded)
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'cap-card-close';
+            closeBtn.textContent = 'Collapse';
+            closeBtn.setAttribute('aria-label', 'Collapse card');
+            card.appendChild(closeBtn);
+
+            // Click card → expand only (never collapse)
+            card.addEventListener('click', (e) => {
+                // If already expanded, do nothing (user must use close button)
+                if (card.classList.contains('card-expanded')) return;
+                // Don't expand if user clicked the close button of another card
+                if (e.target.classList.contains('cap-card-close')) return;
 
                 // Collapse any currently expanded card
                 capCards.forEach(c => c.classList.remove('card-expanded'));
 
-                if (!isExpanded) {
-                    // Expand this card & move to top of grid
-                    card.classList.add('card-expanded');
-                    capGrid.prepend(card);
-                    // Smooth scroll to make the expanded card visible
-                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    // Re-typeset MathJax for newly revealed formulas
-                    if (window.MathJax && MathJax.typesetPromise) {
-                        MathJax.typesetPromise([card]).catch(() => {});
-                    }
+                // Expand this card & move to top of grid
+                card.classList.add('card-expanded');
+                capGrid.prepend(card);
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                // Re-typeset MathJax for newly revealed formulas
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([card]).catch(() => {});
                 }
+            });
+
+            // Close button → collapse this card
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.remove('card-expanded');
             });
         });
     }

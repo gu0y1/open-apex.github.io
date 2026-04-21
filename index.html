@@ -14,15 +14,19 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="main-nav">
         <div class="nav-container">
             <h1 class="logo">Open-APEX<span class="highlight">.org</span></h1>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#interactive">3D Model</a></li>
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#features">Trilemma</a></li>
+                <li><a href="#cost">Cost</a></li>
+                <li><a href="#interactive">3D Explorer</a></li>
                 <li><a href="#demo">Demo</a></li>
-                <li><a href="#vla-flowchart">Showcases</a></li>
+                <li><a href="#capabilities">Capabilities</a></li>
+                <li><a href="#vla-flowchart">VLA Pipeline</a></li>
                 <li><a href="#community">Community</a></li>
             </ul>
         </div>
@@ -37,7 +41,7 @@
             </p>
             <div class="hero-buttons">
                 <a href="#vla-flowchart" class="btn btn-primary">Explore Autonomy</a>
-                <a href="https://github.com/your-username/Open-APEX" class="btn btn-secondary">View on GitHub</a>
+                <a href="https://github.com/gu0y1/Open-APEX" class="btn btn-secondary">View on GitHub</a>
             </div>
         </div>
     </header>
@@ -104,6 +108,63 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Breakdown -->
+    <section id="cost" class="section bg-light" style="border-top: 1px solid #eaeaea;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Built for Under <span class="highlight">SGD 203</span></h2>
+                <p>A complete 6-DOF robotic arm platform -- including structure, actuation, power, safety systems, and workspace furniture -- for less than the price of a single university textbook bundle.</p>
+            </div>
+
+            <div class="cost-wrapper">
+                <table class="cost-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Item</th>
+                            <th>Unit Cost</th>
+                            <th>Qty</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cost-category-row"><td colspan="5">Actuation System</td></tr>
+                        <tr><td></td><td>Joint Motors (with cable, bearing, MCU)</td><td>SGD 10</td><td>6</td><td>SGD 60</td></tr>
+                        <tr><td></td><td>Gripper Servo Motor</td><td>SGD 5</td><td>1</td><td>SGD 5</td></tr>
+
+                        <tr class="cost-category-row"><td colspan="5">Structure</td></tr>
+                        <tr><td></td><td>3D Printed Parts (Full Set, PETG)</td><td>SGD 15</td><td>1</td><td>SGD 15</td></tr>
+
+                        <tr class="cost-category-row"><td colspan="5">Communication</td></tr>
+                        <tr><td></td><td>RS485-UART Converter</td><td>SGD 1</td><td>1</td><td>SGD 1</td></tr>
+
+                        <tr class="cost-category-row"><td colspan="5">Electrical & Power</td></tr>
+                        <tr><td></td><td>Aviation Connector</td><td>SGD 3</td><td>1</td><td>SGD 3</td></tr>
+                        <tr><td></td><td>Electromagnet (24V, demagnetization)</td><td>SGD 5</td><td>1</td><td>SGD 5</td></tr>
+                        <tr><td></td><td>4-Channel Relay Module</td><td>SGD 8</td><td>1</td><td>SGD 8</td></tr>
+                        <tr><td></td><td>Emergency Stop Switch</td><td>SGD 5</td><td>1</td><td>SGD 5</td></tr>
+                        <tr><td></td><td>230V to 24V Power Adapter</td><td>SGD 15</td><td>1</td><td>SGD 15</td></tr>
+
+                        <tr class="cost-category-row"><td colspan="5">Indicators</td></tr>
+                        <tr><td></td><td>24V Indicator Lights</td><td>SGD 3</td><td>3</td><td>SGD 9</td></tr>
+                        <tr><td></td><td>24V RGB Status Light</td><td>SGD 9</td><td>1</td><td>SGD 9</td></tr>
+
+                        <tr class="cost-category-row"><td colspan="5">Mechanical Setup</td></tr>
+                        <tr><td></td><td>PVC Pipe (3m)</td><td>SGD 12</td><td>1</td><td>SGD 12</td></tr>
+                        <tr><td></td><td>PVC Connectors</td><td>SGD 3</td><td>2</td><td>SGD 6</td></tr>
+                        <tr><td></td><td>IKEA Table</td><td>SGD 50</td><td>1</td><td>SGD 50</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="cost-total-row">
+                            <td colspan="4">Total</td>
+                            <td>SGD 203</td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </section>
@@ -501,7 +562,7 @@
                         <li>Attach logs, screenshots, or short screen recordings when possible</li>
                         <li>Tag with the appropriate label: <code>bug</code>, <code>docs</code>, <code>enhancement</code></li>
                     </ul>
-                    <a href="https://github.com/open-apex/open-apex/issues" target="_blank" class="community-btn">Open an Issue</a>
+                    <a href="https://github.com/gu0y1/Open-APEX/issues" target="_blank" class="community-btn">Open an Issue</a>
                 </div>
 
                 <!-- Pull Requests -->
@@ -519,7 +580,7 @@
                         <li>Write a clear PR description linking the related Issue</li>
                         <li>Ensure CI checks pass before requesting review</li>
                     </ul>
-                    <a href="https://github.com/open-apex/open-apex/pulls" target="_blank" class="community-btn">Create a PR</a>
+                    <a href="https://github.com/gu0y1/Open-APEX/pulls" target="_blank" class="community-btn">Create a PR</a>
                 </div>
 
                 <!-- Community Guidelines -->
@@ -536,7 +597,7 @@
                         <li>Breaking changes require an RFC issue before implementation</li>
                         <li>All contributions are licensed under the project's open-source licence</li>
                     </ul>
-                    <a href="https://github.com/open-apex/open-apex" target="_blank" class="community-btn">View Repository</a>
+                    <a href="https://github.com/gu0y1/Open-APEX" target="_blank" class="community-btn">View Repository</a>
                 </div>
             </div>
         </div>
